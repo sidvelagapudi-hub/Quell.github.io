@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quell</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- AUTH -->
+    <section id="authPage" class="auth-page">
+      <div class="auth-shell">
+        <div class="auth-card">
+          <div class="brand-row">
+            <div class="logo"></div>
+            <strong>Quell</strong>
+            <span class="active-pill">Active</span>
+          </div>
+
+          <div id="loginView" class="view active">
+            <h1>Welcome back</h1>
+            <p class="muted">Sign in to enter your account. For this prototype, progress starts from zero.</p>
+
+            <form id="loginForm">
+              <label>Email</label>
+              <input id="loginEmail" type="email" value="alex@email.com" required />
+
+              <label>Password</label>
+              <div class="password-row">
+                <input type="password" value="password" required />
+                <button type="button" id="togglePassword">👁</button>
+              </div>
+
+              <button type="button" class="link-right" data-view="forgotView">Forgot password?</button>
+
+              <div class="divider"><span></span>or<span></span></div>
+              <div class="two-buttons">
+                <button type="button" class="secondary-btn oauth-btn" data-provider="Google">Google</button>
+                <button type="button" class="secondary-btn oauth-btn" data-provider="Apple">Apple</button>
+              </div>
+
+              <button class="primary-btn" type="submit">Sign in</button>
+            </form>
+
+            <p class="small-center">No account? <button class="text-link" data-view="signupView">Get started</button></p>
+          </div>
+
+          <div id="forgotView" class="view">
+            <button class="back-btn" data-view="loginView">← Back</button>
+            <h1>Reset password</h1>
+            <p class="muted">Enter your email and we’ll open an email draft with a reset link. A real sent email needs a backend service.</p>
+
+            <label>Email</label>
+            <input id="resetEmail" type="email" value="alex@email.com" />
+
+            <button id="sendResetBtn" class="primary-btn bottom" data-view="checkInboxView">Send reset link</button>
+          </div>
+
+          <div id="checkInboxView" class="view center-view">
+            <div class="mail-icon">✉</div>
+            <h1>Check your inbox</h1>
+            <p class="muted">We sent a reset link to <strong id="sentEmail">alex@email.com</strong>. It expires in 15 minutes.</p>
+            <button class="primary-btn">Open mail app</button>
+            <button class="secondary-btn full">Resend link</button>
+            <button class="text-link centered" data-view="loginView">Back to sign in</button>
+          </div>
+
+          <div id="signupView" class="view">
+            <div class="brand-row mini-only">
+              <div class="logo small"></div>
+              <strong>Quell</strong>
+            </div>
+            <h1>Create your account</h1>
+            <p class="muted">Start your journey. No credit card needed.</p>
+
+            <label>Email</label>
+            <input id="signupEmail" type="email" value="hello@gmail.com" />
+
+            <label>Password</label>
+            <input id="signupPassword" type="password" value="password" />
+            <small class="hint">At least 8 characters</small>
+
+            <div class="divider"><span></span>or continue with<span></span></div>
+            <div class="two-buttons">
+              <button type="button" class="secondary-btn">Google</button>
+              <button type="button" class="secondary-btn">Apple</button>
+            </div>
+
+            <button class="primary-btn bottom" data-view="usernameView">Create account</button>
+            <p class="small-center">Already have an account? <button class="text-link" data-view="loginView">Sign in</button></p>
+          </div>
+
+          <div id="usernameView" class="view">
+            <button class="back-btn" data-view="signupView">← Back</button>
+            <div class="step-bar"><span class="done"></span><span class="active"></span><span></span></div>
+            <h1>Pick a username</h1>
+            <p class="muted">This is how your party will see you.</p>
+
+            <label>Username</label>
+            <input id="usernameInput" type="text" value="AlexVale_" />
+            <small class="hint">Letters, numbers, underscores only</small>
+
+            <label>Pick an avatar</label>
+            <div class="choice-grid" id="avatarChoices">
+              <button class="choice selected" data-avatar="🧙">🧙</button>
+              <button class="choice" data-avatar="⚔️">⚔️</button>
+              <button class="choice" data-avatar="🪄">🪄</button>
+              <button class="choice" data-avatar="📖">📖</button>
+              <button class="choice" data-avatar="🛡️">🛡️</button>
+            </div>
+
+            <button class="primary-btn bottom" data-view="rewardSetupView">Continue</button>
+          </div>
+
+          <div id="rewardSetupView" class="view">
+            <button class="back-btn" data-view="usernameView">← Back</button>
+            <div class="step-bar"><span></span><span></span><span class="active"></span></div>
+            <h1>Set your first reward</h1>
+            <p class="muted">What will you work toward? This is what your XP is worth.</p>
+
+            <label>Reward name</label>
+            <input id="firstRewardInput" type="text" value="Game time · 20 mins" />
+
+            <label>XP cost</label>
+            <div class="choice-grid four" id="firstRewardCostChoices">
+              <button class="choice" data-cost="50">50<br><small>Quick</small></button>
+              <button class="choice selected" data-cost="100">100<br><small>Standard</small></button>
+              <button class="choice" data-cost="200">200<br><small>Big</small></button>
+              <button class="choice" data-cost="500">500<br><small>Epic</small></button>
+            </div>
+
+            <label>Pick an icon</label>
+            <div class="choice-grid" id="rewardIconChoices">
+              <button class="choice selected" data-icon="🎮">🎮</button>
+              <button class="choice" data-icon="☕">☕</button>
+              <button class="choice" data-icon="🎬">🎬</button>
+              <button class="choice" data-icon="🎵">🎵</button>
+              <button class="choice" data-icon="⚡">⚡</button>
+            </div>
+
+            <button id="finishOnboardingBtn" class="primary-btn bottom">Add reward · Start questing</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APP -->
+    <section id="dashboardPage" class="dashboard-page hidden">
+      <aside class="sidebar">
+        <div class="brand-large"><div class="logo"></div><strong>Quell</strong></div>
+        <nav>
+          <button class="nav-btn active" data-screen="tasksScreen">Tasks</button>
+          <button class="nav-btn" data-screen="statsScreen">Stats</button>
+          <button class="nav-btn" data-screen="partyScreen">Party</button>
+          <button class="nav-btn" data-screen="rewardsScreen">Rewards</button>
+          <button class="nav-btn" data-screen="profileScreen">Profile</button>
+          <button class="nav-btn" data-screen="settingsScreen">Settings</button>
+        </nav>
+        <button id="sidebarLogout" class="secondary-btn full">Sign out</button>
+      </aside>
+
+      <main class="content">
+
+        <!-- TASKS -->
+        <section id="tasksScreen" class="app-screen active">
+          <header class="screen-header">
+            <div>
+              <p class="section-kicker blue">Tasks</p>
+              <h1>Today's quests</h1>
+              <p class="muted"><span id="taskCompletionText">0/0</span> complete</p>
+            </div>
+            <div class="header-actions">
+              <span class="mini-pill">⭐ <span id="xpTodayText">0</span> XP today</span>
+              <button id="showNewQuestBtn" class="primary-btn compact">+ Add quest</button>
+            </div>
+          </header>
+
+          <div id="emptyTasks" class="empty-state">
+            <h2>No quests yet</h2>
+            <p class="muted">Add your first quest to start earning XP.</p>
+            <button class="primary-btn compact" id="emptyAddQuestBtn">+ Add quest</button>
+          </div>
+
+          <div id="tasksList" class="list"></div>
+        </section>
+
+        <section id="newQuestScreen" class="app-screen">
+          <header class="screen-header">
+            <div><p class="section-kicker blue">Tasks</p><h1>New quest</h1></div>
+          </header>
+
+          <div class="form-card">
+            <label>Name</label>
+            <input id="questName" type="text" placeholder="Morning meditation" />
+
+            <label>Category</label>
+            <div class="pill-options" id="questCategoryChoices">
+              <button class="pill-choice selected" data-category="Focus">Focus</button>
+              <button class="pill-choice" data-category="Health">Health</button>
+              <button class="pill-choice" data-category="Wisdom">Wisdom</button>
+              <button class="pill-choice" data-category="Creative">Creative</button>
+            </div>
+
+            <label>Difficulty</label>
+            <div class="difficulty-grid" id="questDifficultyChoices">
+              <button class="difficulty selected" data-xp="5" data-difficulty="Easy">Easy<br><small>+5 XP</small></button>
+              <button class="difficulty" data-xp="10" data-difficulty="Medium">Medium<br><small>+10 XP</small></button>
+              <button class="difficulty" data-xp="25" data-difficulty="Hard">Hard<br><small>+25 XP</small></button>
+              <button class="difficulty" data-xp="50" data-difficulty="Epic">Epic<br><small>+50 XP</small></button>
+            </div>
+
+            <label>Notes</label>
+            <textarea id="questNotes" placeholder="Optional notes"></textarea>
+
+            <div class="button-row">
+              <button id="addQuestBtn" class="primary-btn compact">Add quest</button>
+              <button class="secondary-btn compact" data-screen="tasksScreen">Cancel</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="taskDetailScreen" class="app-screen">
+          <button class="back-btn" data-screen="tasksScreen">← Tasks</button>
+          <div class="detail-card">
+            <div class="detail-top">
+              <div>
+                <h1 id="detailTitle">Task</h1>
+                <span id="detailCategory" class="category-badge">Focus</span>
+              </div>
+              <button id="deleteTaskBtn" class="danger-btn">Delete</button>
+            </div>
+
+            <div class="detail-row"><span>Difficulty</span><strong id="detailDifficulty">Easy · +5 XP</strong></div>
+            <div class="detail-row"><span>Times completed</span><strong id="detailCompletedTimes">0</strong></div>
+            <div class="detail-row"><span>Current streak</span><strong id="detailStreak">0 days</strong></div>
+            <div class="detail-row"><span>Total XP earned</span><strong id="detailEarnedXp">0 XP</strong></div>
+            <div class="detail-row"><span>Last completed</span><strong id="detailLastDone">Never</strong></div>
+
+            <div class="notes-box">
+              <span>Notes</span>
+              <p id="detailNotes">No notes yet.</p>
+            </div>
+
+            <button id="detailCompleteBtn" class="primary-btn bottom">Mark complete</button>
+          </div>
+        </section>
+
+        <!-- STATS -->
+        <section id="statsScreen" class="app-screen">
+          <header class="screen-header">
+            <div>
+              <p class="section-kicker green">Stats</p>
+              <h1>Your progress</h1>
+              <p class="muted">Track your streaks, skills and quest history.</p>
+            </div>
+          </header>
+
+          <div class="stats-grid">
+            <div class="stat-card"><h3>Level</h3><strong id="levelText">1</strong><p id="classText">New Adventurer</p></div>
+            <div class="stat-card"><h3>Total quests</h3><strong id="totalQuestsText">0</strong><p>Across your journey</p></div>
+            <div class="stat-card"><h3>Current streak</h3><strong id="streakText">0</strong><p id="bestStreakText">Best streak: 0 days</p></div>
+            <div class="stat-card"><h3>XP this level</h3><strong id="levelXpText">0</strong><p id="nextLevelText">100 XP until next level</p></div>
+          </div>
+
+          <div class="panel roomy">
+            <h2>Skills</h2>
+            <div id="skillRows"></div>
+          </div>
+
+          <button class="wide-row" data-screen="streakScreen">🔥 Streak & history <span>›</span></button>
+        </section>
+
+        <section id="streakScreen" class="app-screen">
+          <button class="back-btn" data-screen="statsScreen">← Stats</button>
+          <div class="panel roomy">
+            <h1>Streak & history</h1>
+            <p class="muted">June 2026</p>
+            <div class="stats-strip">
+              <div><strong id="streakCurrentMini">0</strong><span>Current streak</span></div>
+              <div><strong id="streakBestMini">0</strong><span>Best streak</span></div>
+              <div><strong id="streakTotalMini">0</strong><span>Total done</span></div>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+            <div class="legend"><span class="green-dot"></span> Completed <span class="orange-dot"></span> Perfect day</div>
+          </div>
+        </section>
+
+        <!-- PARTY -->
+        <section id="partyScreen" class="app-screen">
+          <header class="screen-header">
+            <div>
+              <p class="section-kicker red">Party</p>
+              <h1>Your party</h1>
+              <p class="muted"><span id="partyCount">1</span> member · Active quest</p>
+            </div>
+            <button id="inviteFriendBtn" class="secondary-btn compact">+ Invite</button>
+          </header>
+
+          <div class="two-col">
+            <div class="panel">
+              <div id="partyMembers"></div>
+              <button id="addFriendDemoBtn" class="wide-row dashed">Invite a friend</button>
+            </div>
+            <button class="boss-card" data-screen="partyQuestScreen">
+              <div>
+                <strong>The Sloth King</strong>
+                <span>Boss · Difficulty: Hard</span>
+              </div>
+              <span>›</span>
+            </button>
+          </div>
+        </section>
+
+        <section id="partyQuestScreen" class="app-screen">
+          <button class="back-btn" data-screen="partyScreen">← Party</button>
+          <div class="boss-panel">
+            <div class="boss-icon">💀</div>
+            <h1>The Sloth King</h1>
+            <p class="muted">Boss · Difficulty: Hard</p>
+            <div class="boss-health-row"><span>Boss HP</span><strong id="bossHpText">500 / 500</strong></div>
+            <div class="boss-health-bar"><div id="bossHealthFill"></div></div>
+            <p class="muted">Every completed task deals damage.</p>
+
+            <div class="activity-log" id="bossActivity"></div>
+            <button class="primary-btn" data-screen="tasksScreen">Complete tasks to attack</button>
+          </div>
+        </section>
+
+        <!-- REWARDS -->
+        <section id="rewardsScreen" class="app-screen">
+          <header class="screen-header">
+            <div>
+              <p class="section-kicker yellow">Rewards</p>
+              <h1>Rewards</h1>
+              <p class="muted">Spend XP on things you love.</p>
+            </div>
+            <div class="header-actions">
+              <span class="mini-pill">⭐ <span id="spendableXpText">0</span> XP</span>
+              <button id="showRewardFormBtn" class="primary-btn compact">+ Add reward</button>
+            </div>
+          </header>
+
+          <div id="rewardForm" class="form-card hidden">
+            <h2>Add reward</h2>
+            <label>Reward name</label>
+            <input id="rewardNameInput" placeholder="Fancy coffee" />
+            <label>Cost</label>
+            <input id="rewardCostInput" type="number" min="1" value="100" />
+            <label>Icon</label>
+            <input id="rewardIconInput" value="🎁" />
+            <div class="button-row">
+              <button id="addRewardBtn" class="primary-btn compact">Add reward</button>
+              <button id="cancelRewardBtn" class="secondary-btn compact">Cancel</button>
+            </div>
+          </div>
+
+          <div id="emptyRewards" class="empty-state hidden">
+            <h2>No rewards yet</h2>
+            <p class="muted">Add a reward to make questing feel worthwhile.</p>
+          </div>
+
+          <div id="rewardsList" class="reward-list"></div>
+        </section>
+
+        <!-- PROFILE -->
+        <section id="profileScreen" class="app-screen">
+          <header class="screen-header">
+            <div>
+              <p class="section-kicker teal">Profile</p>
+              <h1>Profile</h1>
+              <p class="muted">Your character, badges and account summary.</p>
+            </div>
+            <button class="icon-btn" data-screen="notificationsScreen">🔔<span id="unreadBadge">0</span></button>
+          </header>
+
+          <div class="profile-card">
+            <button class="tiny-cog" data-screen="settingsScreen">⚙</button>
+            <div id="profileAvatar" class="big-avatar">🧙</div>
+            <h1 id="profileName">AlexVale_</h1>
+            <p class="muted"><span id="profileClass">New Adventurer</span> · Level <span id="profileLevel">1</span></p>
+            <div class="stats-strip">
+              <div><strong id="profileQuestCount">0</strong><span>quests</span></div>
+              <div><strong id="profileStreak">0</strong><span>day streak</span></div>
+              <div><strong id="profileGold">0</strong><span>XP</span></div>
+            </div>
+
+            <h3>Badges earned</h3>
+            <div id="badgeGrid" class="badge-grid"></div>
+
+            <div class="button-row">
+              <button class="secondary-btn compact" data-screen="gearScreen">Gear shop</button>
+              <button class="secondary-btn compact" data-screen="settingsScreen">Settings</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="notificationsScreen" class="app-screen">
+          <header class="screen-header">
+            <div>
+              <p class="section-kicker teal">Profile</p>
+              <h1>Notifications</h1>
+              <p class="muted"><span id="unreadText">0</span> unread</p>
+            </div>
+            <button id="markAllReadBtn" class="text-link">Mark all read</button>
+          </header>
+          <div id="notificationsList" class="notification-list"></div>
+        </section>
+
+        <section id="gearScreen" class="app-screen">
+          <button class="back-btn" data-screen="profileScreen">← Profile</button>
+          <header class="screen-header">
+            <div>
+              <p class="section-kicker teal">Profile</p>
+              <h1>Gear shop</h1>
+              <p class="muted">Spend XP on cosmetics.</p>
+            </div>
+            <span class="mini-pill">⭐ <span id="gearXpText">0</span> XP</span>
+          </header>
+          <div id="gearList" class="gear-list"></div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section id="settingsScreen" class="app-screen">
+          <button class="back-btn" data-screen="profileScreen">← Profile</button>
+          <header class="screen-header">
+            <div>
+              <p class="section-kicker orange">Settings</p>
+              <h1>Settings</h1>
+            </div>
+          </header>
+
+          <div class="settings-panel">
+            <h3>Notifications</h3>
+            <label class="setting-row"><span><strong>Daily reminder</strong><small>8:00 pm</small></span><input type="checkbox" checked></label>
+            <label class="setting-row"><span><strong>Party activity</strong><small>Boss attacks, joins</small></span><input type="checkbox" checked></label>
+            <label class="setting-row"><span><strong>Streak warnings</strong><small>Alert before midnight</small></span><input type="checkbox"></label>
+
+            <h3>Account</h3>
+            <button class="setting-row button-like" data-screen="profileScreen"><span><strong>Edit profile</strong></span><b>›</b></button>
+            <button class="setting-row button-like"><span><strong>Change password</strong></span><b>›</b></button>
+            <button id="settingsSignOutBtn" class="setting-row button-like"><span><strong>Sign out</strong></span><b>›</b></button>
+
+            <h3 class="danger-title">Danger zone</h3>
+            <button id="deleteAccountBtn" class="setting-row button-like danger-zone"><span><strong>Delete account</strong></span><b>›</b></button>
+          </div>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="script.js"></script>
+</body>
+</html>
